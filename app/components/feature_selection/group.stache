@@ -1,0 +1,28 @@
+{{#if ./items}}
+{{#if items.length}}
+<div class="fs-container">
+  {{#each items}}
+    {{#if ./items.length}}
+      {{^hide}}
+	  <div class="level-{{level}} {{^./show}}collapsed{{/./show}} " style="cursor:pointer;" data-toggle="collapse" data-target="#features-{{uuid}}">{{label}}</div>
+	  <div id="features-{{uuid}}" class="collapse {{./show}}">
+	  {{#if ./description}}<div class="fs-description">{{./description}}</div>{{/if}}
+            {{> /components/feature_selection/group.stache }}
+	  </div>
+      {{/hide}}
+    {{else}}
+      {{#if hide}}
+      {{#else}}
+	<div class="fs-group">
+	  <div ($click)="toggle(.)" class="fs-item clearfix">
+	    <div class="fs-toggle {{selected(.)}}"></div>
+	    <div class="fs-label">{{label}}</div>
+	  </div>
+	  {{#if ./description}}<div class="description">{{./description}}</div>{{/if}}
+	</div>
+      {{/if}}
+    {{/if}}
+  {{/each}}
+</div>
+{{/if}}
+{{/if}}

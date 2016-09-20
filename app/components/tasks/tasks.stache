@@ -1,0 +1,29 @@
+<h2>
+  <span>Tasks</span>
+  <dropdown-bootstrap {items}="runs" {(selected)}="current_run">{{label}}</dropdown-bootstrap>
+</h2>
+  {{#if tasks.isPending }}
+  ...
+  {{else}}
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+	<th rowspan="2">Query</th>
+	<th colspan="2" style="border-bottom: none; text-align:center">nDCG@10</th>
+      </tr>
+      <tr>
+	<th>Current</th>
+	<th>Baseline</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each filter}}
+	<tr can-click="select_task">
+	  <td>{{query}}</td>
+	  <td style="text-align:right;">{{pretty ./performance.ndcg}}</td>
+	  <td style="text-align:right;">{{#if ./baseline}}{{pretty ./baseline.performance.ndcg}}{{/if}}</td>
+	</tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{/if}}

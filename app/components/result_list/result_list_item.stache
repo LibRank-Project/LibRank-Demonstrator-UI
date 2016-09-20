@@ -1,0 +1,27 @@
+<div class="row">
+<div class="col-md-1 qrel"><span class="qrel_binary-{{record_data.qrel.binary}}">{{record_data.qrel.slider}}</span></div>
+<div class="col-md-11 titip-left record" style="background-color:{{color()}}">
+  <div><span class="pos"><span class="pos-current">{{pos.current}}</span> ({{pos.baseline}})</span> - <a href="http://mithril.zbw.eu/Record/-/{{record.id}}" target="record">{{record.title.0}}</a></div>
+  <div>{{record.date.0}} - {{record.creator.0}} | {{record.type}} - {{record.source}}</div>
+  <div class="titip-content" style="">
+    <table>
+      <tbody>
+      <tr><td>Score</td><td style="text-align:right;">{{pretty current.score}}</td></tr>
+      <tr><td>Text score</td><td style="text-align:right;">{{pretty current.text_score}}</td></tr>
+      {{#record_data.features_sorted}}
+	<tr><td>{{name}}</td><td style="text-align:right;">{{value}}</td></tr>
+      {{/record_data.features_sorted}}
+      </tbody>
+    </table>
+    <!--
+      <div class="col-sm-8">score</div><div class="col-sm-4">{{pretty current.score}}</div>
+      <div class="col-sm-8">text_score</div><div class="col-sm-4">{{pretty current.text_score}}</div>
+    </div>
+    <div>
+      {{#record_data.features_sorted}}
+	<div class="col-sm-8">{{name}}</div><div class="col-sm-4">{{value}}</div>
+      {{/record_data.features_sorted}}
+    </div>
+    -->
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{{#appState.current_model}}
+<h2 class="editable"><span class="view">{{name}}</span><span class="edit"><input type="text" value="{{name}}" {($value)}="name" ($enter)="finishEditing"/></span></h2>
+<div><a href="" data-toggle="modal" data-target="#modal-rankings_selection">Select ranking...</a></div>
+{{#if modifiable}}
+<div>
+  {{#if weights.free.length}}
+    <ul class="weights-perm">
+    {{#each weights.perm}}
+      <li>
+	<span class="remove" style="visibility: hidden;">&times; </span><span title="{{description}}">{{label}} </span>
+	<slider><input type="text" data-slider-value="{{value}}" data-slider-step="0.001" data-slider-min="0.001" data-slider-max="10000" data-slider-scale="logarithmic" /></slider>
+      </li>
+    {{/each}}
+    </ul>
+  {{/if}}
+  <ul>
+    {{#each weights.free}}
+      <li><span class="remove" can-click="remove_feature(key)">&times; </span><span>{{#feature(key)}}{{label}} {{/feature}}</span> <slider><input type="text" value="{{value}}" data-slider-value="{{value}}" data-slider-step="0.1" data-slider-min="0" data-slider-max="100"/></slider></li>
+    {{/each}}
+  </ul>
+</div>
+<a id="add-feature-toggle" href="" data-toggle="modal" data-target="#modal-feature_selection">Add features...</a>
+{{#else}}
+<div class="note">
+This is a static model. No adjustable weights are exposed.
+</div>
+{{/if}}
+<button class="save_baseline">Set as baseline</button></div>
+{{/appState.current_model}}

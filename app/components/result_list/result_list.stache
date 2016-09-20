@@ -1,0 +1,15 @@
+<h2>Result list</h2>
+<div class="header">
+<div>Query: {{task.query}}</div>
+<div>Information need:</div>
+<div class="need-description">{{task.desc}}</div>
+</div>
+<div class="result-list">
+{{#task.items}}
+  <div class="row result-list-item">
+    <div class="col-md-12">
+      <result-list-item {item}="."></result-list-item>
+    </div>
+  </div>
+{{/task.items}}
+</div>

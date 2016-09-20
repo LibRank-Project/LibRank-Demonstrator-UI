@@ -1,0 +1,8 @@
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{#with selected}}<content/>{{/with}} <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    {{#each items}}
+      <li class="{{#if is_selected(.)}}active{{/if}}"><a href="javascript://" can-click="select(.)"><content/></a></li>
+    {{/each}}
+  </ul>
+</div>

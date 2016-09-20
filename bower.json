@@ -1,0 +1,31 @@
+{
+  "name": "canjs",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5",
+    "modernizr": "~2.8.1",
+    "titip": "*",
+    "nvd3": "~1.8.1",
+    "seiyria-bootstrap-slider": "^9.1.3",
+    "intro.js": "^2.3.0",
+    "components-font-awesome": "^4.6.3",
+    "CanJS": "canjs#^2.3.27"
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": [
+        "assets/stylesheets/_bootstrap.scss",
+        "assets/fonts/bootstrap/*",
+        "assets/javascripts/bootstrap.js"
+      ]
+    }
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
+  "resolutions": {
+    "nvd3": "1.8.1",
+    "CanJS": "^2.3.27"
+  }
+}

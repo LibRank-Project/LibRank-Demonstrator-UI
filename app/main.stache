@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5 col-lg-4"><div class="panel ranking-model"><ranking-model></ranking-model></div></div>
+    <div class="col-md-7 col-lg-8">
+      <div class="row row-eq-height">
+      <div class="col-md-4">
+      <div class="panel panel-performance">
+	<h2>
+	  <span>Performance ({{current_run.label}})</span>
+	</h2>
+	{{#performance.list(current_tasks)}}
+
+	<div class="measure-container">
+	<h5>{{label}}</h5>
+	<table class="table">
+	  <tbody>
+	    <tr>
+	      <th>Current</th>
+	      <td>{{pretty current}}</td>
+	    </tr>
+	    <tr>
+	      <th>Baseline</th>
+	      <td>{{pretty baseline}}</td>
+	    </tr>
+	  </tbody>
+	</table>
+	</div>
+	{{/performance}}
+      </div>
+      </div>
+      <div class="col-md-8">
+	<div id="panel-chart" class="panel">
+	  <h2>Per task performance differences</h2>
+	  <div id="chart">
+	    {{^baseline_model}}
+	      <div class="no-data">Set a baseline model to populate the per task differences plot.</div>
+	    {{/baseline_model}}
+	    <svg></svg>
+	  </div>
+	</div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 col-lg-4"><div id="panel-tasks" class="panel"><tasks {(run)}="run" {(current_run)}="current_run" {current_model}="current_model" {baseline_model}="baseline_model"></tasks></div></div>
+    <div class="col-md-7 col-lg-8">
+      <div id="panel-result-list" class="panel"><result-list {task}="current_task"></result-list></div>
+    </div>
+  </div>
+</div>

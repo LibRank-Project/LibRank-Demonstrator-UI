@@ -1,0 +1,55 @@
+<div class="modal fade" id="modal-rankings_selection" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title">Select a ranking</h4>
+      </div>
+      <div class="modal-body" id="rankings_selection">
+	<div class="fs-container">
+	<div class="level-2" data-toggle="collapse" data-target="#rankings-custom">User defined rankings</div>
+	<div id="rankings-custom" class="fs-container collapse in">
+	  {{#if rankings.custom.length}}
+	    <div class="fs-container">
+	      {{#each rankings.custom}}
+		<div class="fs-group">
+		  <div ($click)="select(.)" class="fs-item clearfix">
+		    <div class="fs-toggle {{#if selected(.)}}selected{{/if}}"></div>
+		    <div class="fs-label">{{model.name}}</div>
+		  </div>
+		  {{#if ./description}}<div class="description">{{description}}</div>{{/if}}
+		</div>
+	      {{/each}}
+	    </div>
+	  {{#else}}
+	    <div class="note">No user defined rankings yet.</div>
+	  {{/if}}
+	</div>
+	<div class="level-2" data-toggle="collapse" data-target="#rankings-predefined">Predefined rankings</div>
+	<div id="rankings-predefined" class="fs-container collapse in">
+	  {{#rankings.predefined}}
+	    <div class="level-3 collapsed" data-toggle="collapse" data-target="#rankings-run-{{run}}">Run {{run}}</div>
+	    <div class="fs-container">
+	    <div id="rankings-run-{{run}}" class="collapse">
+	      {{#if ./description}}<div class="description">{{description}}</div>{{/if}}
+	      {{#each rankings}}
+		<div class="fs-group">
+		  <div ($click)="select(.)" class="fs-item clearfix">
+		    <div class="fs-toggle {{#if selected(.)}}selected{{/if}}"></div>
+		    <div class="fs-label">{{model.name}}</div>
+		  </div>
+		  {{#if ./description}}<div class="description">{{description}}</div>{{/if}}
+		</div>
+	      {{/each}}
+	    </div>
+	    </div>
+	  {{/rankings.predefined}}
+	</div>
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
