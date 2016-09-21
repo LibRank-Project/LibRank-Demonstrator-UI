@@ -12,5 +12,5 @@ The purpose of the LibRank demonstrator is to interactively compose different ra
 * Run `gulp serve` to start the development server
 * Run `gulp` to build for production (folder `dist/`)
  
-The frontend communicates with a server component to get some basic data and to calculate the performance scores. Therefore, you must also install the [LibRank-Demonstrator-API](https://github/LibRank-Project/LibRank-Demonstrator-API).
+The frontend communicates with a server component to get some basic data and to calculate the performance scores. Therefore, you must also install the [LibRank-Demonstrator-API](https://github.com/LibRank-Project/LibRank-Demonstrator-API).
 
