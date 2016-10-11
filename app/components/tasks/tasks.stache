@@ -20,8 +20,8 @@
       {{#each filter}}
 	<tr can-click="select_task">
 	  <td>{{query}}</td>
-	  <td style="text-align:right;">{{pretty ./performance.ndcg}}</td>
-	  <td style="text-align:right;">{{#if ./baseline}}{{pretty ./baseline.performance.ndcg}}{{/if}}</td>
+	  <td style="text-align:right;">{{pretty ./performance.nDCG_10}}</td>
+	  <td style="text-align:right;">{{#if ./baseline}}{{pretty ./baseline.performance.nDCG_10}}{{/if}}</td>
 	</tr>
       {{/each}}
     </tbody>

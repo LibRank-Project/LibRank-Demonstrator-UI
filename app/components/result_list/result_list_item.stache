@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-md-1 qrel"><span class="qrel_binary-{{record_data.qrel.binary}}">{{record_data.qrel.slider}}</span></div>
+<div class="col-md-1 qrel"><span class="qrel_binary-{{#if record_data.qrel.binary}}rel{{#else}}nonrel{{/if}}">{{record_data.qrel.gradual}}</span></div>
 <div class="col-md-11 titip-left record" style="background-color:{{color()}}">
   <div><span class="pos"><span class="pos-current">{{pos.current}}</span> ({{pos.baseline}})</span> - <a href="http://mithril.zbw.eu/Record/-/{{record.id}}" target="record">{{record.title.0}}</a></div>
   <div>{{record.date.0}} - {{record.creator.0}} | {{record.type}} - {{record.source}}</div>

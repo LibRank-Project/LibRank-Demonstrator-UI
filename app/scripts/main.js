@@ -283,15 +283,15 @@ jQuery(function() {
       can.batch.start();
 	//console.time("item");
       res.ranked_list.forEach(function(item, i) {
-	var _item = items_lookup[item.id];
+	var _item = items_lookup[item.record_id];
 	var b   = '-';
 	if( task.attr('baseline.idx') ) {
-	  b = task.attr('baseline.idx')[item.id];
+	  b = task.attr('baseline.idx')[item.record_id];
 	}
 	if(_item == null) {
 	  _item = {
 	    baseline: { pos: b }, 
-	    id: item.id, 
+	    id: item.record_id, 
 	    pos: new can.Map({ current: i+1, baseline: b }), 
 	    sid:task.attr('SearchTask'),
 	    current: new can.Map({
@@ -299,9 +299,9 @@ jQuery(function() {
 	      text_score: item.text_score
 	    })
 	  };
-	  items_lookup[item.id] = new can.Map(_item);
-	  items_lookup[item.id].record = {};
-	  items_lookup[item.id].record_data = {};
+	  items_lookup[item.record_id] = new can.Map(_item);
+	  items_lookup[item.record_id].record = {};
+	  items_lookup[item.record_id].record_data = {};
 	} else {
 	  _item.pos.attr("current", i+1);
 	  _item.current.attr("score", item.score);
@@ -340,7 +340,7 @@ jQuery(function() {
 	      return a.uuid - b.uuid;
 	    });
 	    item.record_data = { qrel: el.qrel, features_sorted: features};
-	    ideal.push(el.qrel.slider);
+	    ideal.push(el.qrel.gradual);
 	  });
 	  ideal.sort(function(a,b) { return b-a;} );
 	  items.forEach(function(el,i) {
@@ -407,7 +407,7 @@ jQuery(function() {
     template: can.view('components/result_list/result_list_item.stache'),
     viewModel: {
       color: function(x) {
-	var delta = Number(this.item.record_data.qrel.slider) - Number(this.attr('item.qrel_ideal'));
+	var delta = Number(this.item.record_data.qrel.gradual) - Number(this.attr('item.qrel_ideal'));
 	var abs = Math.abs(delta);
 	// limit the maximal color (alpha=1 looked quite harsh)
 	var alpha = abs/100*0.6;
@@ -523,7 +523,7 @@ jQuery(function() {
       var i = 1;
       
       results.ranked_list.forEach(function(item) {
-	idx[item.id] = i;
+	idx[item.record_id] = i;
 	i++;
       });
       this.attr("baseline.idx",idx);
@@ -540,7 +540,7 @@ jQuery(function() {
       var i = 1;
       
       this.results.ranked_list.forEach(function(item) {
-	  idx[item.id] = i;
+	  idx[item.record_id] = i;
 	  i++;
 	});
 	baseline.attr('idx',idx);
@@ -598,7 +598,7 @@ jQuery(function() {
       return p;
     }
   });
-  Task.List.prototype.get_performance_scores = function(measure="ndcg") {
+  Task.List.prototype.get_performance_scores = function(measure="nDCG_10") {
     var p = this.map(function(task) {
       var b = task.attr('baseline.performance');
       if(b) {
@@ -622,9 +622,9 @@ jQuery(function() {
       if(tasks == null) { return; }
       var p = tasks.performance();
       var m = [
-	{ key: 'ndcg', label: 'nDCG@10'}, 
-	{ key: 'nERR', label: 'nERR@20'}, 
-	{ key: 'prec', label: 'Prec@10' }
+	{ key: 'nDCG_10', label: 'nDCG@10' },
+	{ key: 'nERR_20', label: 'nERR@20' },
+	{ key: 'Prec_10', label: 'Prec@10' }
       ];
       var x = [];
       m.forEach(function(m_) {
